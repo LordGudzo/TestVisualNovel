@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- background picture -->
+    <ImageView
+        android:id="@+id/iv_background"
+        android:src="@drawable/bg_test_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:contentDescription="@null" />
+
+    <!--     Darkening -->
+<!--    <View-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:background="#30000000" />-->
+
+    <!-- header -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp">
+<!--        btn_menu-->
+        <ImageButton
+            android:id="@+id/btn_header_menu"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_menu"
+            android:background="@drawable/shape_rounded_btn_header"
+            android:contentDescription="Menu"
+            app:tint="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+<!--       btn_map-->
+        <ImageButton
+            android:id="@+id/btn_header_map"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:src="@drawable/ic_map"
+            android:background="@drawable/shape_rounded_btn_header"
+            android:contentDescription="Map"
+            app:layout_constraintStart_toEndOf="@id/btn_header_menu"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/white" />
+<!--       btn volume_mute-->
+        <ImageButton
+            android:id="@+id/btn_header_volume_mute"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_volume_mute"
+            android:background="@drawable/shape_rounded_btn_header"
+            android:contentDescription="Volume mute"
+            android:visibility="gone"
+            app:tint="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+<!--       btn volume_free-->
+        <ImageButton
+            android:id="@+id/btn_header_volume_free"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_volume_free"
+            android:background="@drawable/shape_rounded_btn_header"
+            android:contentDescription="Volume free"
+            app:tint="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Field of menu, is visible after click of btn_menu -->
+    <FrameLayout
+        android:id="@+id/menu_field"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#90000000" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center|center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Меню"
+                android:textSize="40sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"/>
+            <Button
+                android:id="@+id/btn_menu_field_continue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"
+                android:paddingHorizontal="40dp"
+                android:text="Продолжить" />
+            <Button
+                android:id="@+id/btn_menu_field_restart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"
+                android:paddingHorizontal="40dp"
+                android:text="Начать заново"
+                android:backgroundTint="@color/red"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Прогресс сохраняеться автоматически"
+                android:textSize="14sp"
+                android:textColor="@color/white"/>
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+    <!--    Story and choose variants field-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="vertical"
+        android:padding="15dp">
+        <!--    Story field-->
+        <TextView
+            android:id="@+id/tv_story"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:lineSpacingExtra="6dp"/>
+        <!--   Choose variants field-->
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+    </LinearLayout>
+
+
+</FrameLayout>

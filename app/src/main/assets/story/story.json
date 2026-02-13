@@ -1,0 +1,53 @@
+{
+  "scenes": [
+    {
+      "id": "room_night",
+      "text": "Ночь стояла тихая. В доме было слишком спокойно, будто что-то затаилось в темноте.",
+      "background": "bg_room_night",
+      "choices": [
+        {
+          "text": "Выйти из комнаты",
+          "nextScene": "corridor"
+        },
+        {
+          "text": "Остаться у окна",
+          "nextScene": "window_thoughts"
+        }
+      ]
+    },
+    {
+      "id": "corridor",
+      "text": "Коридор встретил тебя холодом и слабым светом из приоткрытой двери внизу. Пол тихо скрипнул под шагом.",
+      "background": "bg_corridor_dark",
+      "choices": [
+        {
+          "text": "Спуститься вниз",
+          "nextScene": "end_mystery"
+        }
+      ]
+    },
+    {
+      "id": "window_thoughts",
+      "text": "За стеклом — пустая улица и редкий фонарь. В отражении ты замечаешь движение за спиной.",
+      "background": "bg_window_night",
+      "choices": [
+        {
+          "text": "Обернуться",
+          "nextScene": "end_shadow"
+        }
+      ]
+    },
+    {
+      "id": "end_mystery",
+      "text": "Ты делаешь шаг вниз… и дом погружается в полную темноту. История только начинается.",
+      "background": "bg_stairs_dark",
+      "choices": []
+    },
+    {
+      "id": "end_shadow",
+      "text": "Ты резко оборачиваешься — в комнате никого. Но окно за твоей спиной уже открыто.",
+      "background": "bg_room_empty",
+      "choices": []
+    }
+  ]
+}
