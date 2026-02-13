@@ -1,10 +1,12 @@
 package com.firstproject.testvisualnovel
 
 import android.os.Bundle
+
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
+
 import com.firstproject.testvisualnovel.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -21,14 +23,13 @@ class MainActivity : AppCompatActivity() {
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         binding.ivBackground.setImageDrawable(
             ContextCompat.getDrawable(
                 this@MainActivity,
                 R.drawable.bg_test_image
             )
         )
-
-
 
         binding.btnHeaderMenu.setOnClickListener {
             binding.menuField.isVisible = true
@@ -39,4 +40,5 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
 }
