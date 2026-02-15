@@ -7,7 +7,10 @@ import kotlinx.serialization.json.Json
 //read JSON and create object Scene also getSceneOfId
 
 class ParsingStore(private val context: Context) {
-    val story = loadStory()
+    private val story = loadStory()
+
+    private val sceneMap: Map<String, Scene> = story.scenes.associateBy { it.id }
+
     fun loadStory(): Story {
         val jsonString = context.assets
             .open("story/story.json")
@@ -18,11 +21,6 @@ class ParsingStore(private val context: Context) {
     }
 
     fun getSceneById(id: String): Scene? {
-        for (i in story.scenes) {
-            if (id == i.id) {
-                return i
-            }
-        }
-        return null
+        return sceneMap[id]
     }
 }

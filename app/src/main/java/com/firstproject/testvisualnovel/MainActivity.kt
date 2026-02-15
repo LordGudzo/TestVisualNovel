@@ -2,13 +2,15 @@ package com.firstproject.testvisualnovel
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
+import com.bumptech.glide.Glide
+import com.firstproject.testvisualnovel.data.Choice
 import com.firstproject.testvisualnovel.data.ParsingStore
-import com.firstproject.testvisualnovel.data.Scene
+import com.firstproject.testvisualnovel.data.SceneLogical
 
 import com.firstproject.testvisualnovel.databinding.ActivityMainBinding
 
@@ -18,6 +20,7 @@ class MainActivity : AppCompatActivity() {
     private val binding
         get() = _binding ?: throw IllegalStateException("Binding must not be null")
 
+    private lateinit var logical: SceneLogical
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,14 +29,48 @@ class MainActivity : AppCompatActivity() {
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        funTest()
-        binding.ivBackground.setImageDrawable(
-            ContextCompat.getDrawable(
-                this@MainActivity,
-                R.drawable.bg_test_image
-            )
-        )
+        val parsingStore = ParsingStore(this)
+        logical = SceneLogical(parsingStore)
 
+        setClickerForHeader()
+        showScene()
+
+
+
+
+    }
+
+    private fun showScene() {
+        val imagePath: String = logical.backgroundImagePath
+
+        //set background picture
+        Glide.with(this)
+            .load("file:///android_asset/${imagePath}")
+            .into(binding.ivBackground)
+
+        binding.tvStory.text = logical.currentSceneText
+
+        createChooseButtons()
+
+    }
+
+    private fun createChooseButtons() {
+        val choices: List<Choice> = logical.choises
+        Log.d("TEST", "createChooseButtons: $choices")
+        for (i in choices){
+            val button: Button = Button(this).apply {
+                text = i.text
+                setOnClickListener {
+                    binding.llStoryField.removeAllViews()
+                    logical.setNewScene(i.nextScene)
+                    showScene()
+                }
+            }
+            binding.llStoryField.addView(button)
+        }
+    }
+
+    private fun setClickerForHeader() {
         binding.btnHeaderMenu.setOnClickListener {
             binding.menuField.isVisible = true
         }
@@ -41,18 +78,5 @@ class MainActivity : AppCompatActivity() {
         binding.btnMenuFieldContinue.setOnClickListener {
             binding.menuField.isVisible =false
         }
-
     }
-
-    private fun funTest() {
-        val testParsing = ParsingStore(this)
-        val story = testParsing.loadStory()
-        Log.d("TEST", "funTest: $story")
-        Log.d("TEST", "funTest: ${story.scenes[0].id}")
-        val scene: Scene? = testParsing.getSceneById(story.scenes[0].id)
-        Log.d("TEST", "funTest: $scene")
-
-
-    }
-
 }
