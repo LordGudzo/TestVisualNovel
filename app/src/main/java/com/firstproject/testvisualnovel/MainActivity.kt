@@ -48,7 +48,9 @@ class MainActivity : AppCompatActivity() {
             .load("file:///android_asset/${imagePath}")
             .into(binding.ivBackground)
 
-        binding.tvStory.text = logical.currentSceneText
+      //    binding.tvStory.text = logical.currentSceneText
+         // binding.tvStory.text = getString(R.string.story_placeholder)
+        binding.tvStory.text = getString(R.string.menu)
 
         createChooseButtons()
 
