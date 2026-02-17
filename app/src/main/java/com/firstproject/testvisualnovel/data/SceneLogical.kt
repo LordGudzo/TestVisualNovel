@@ -1,17 +1,29 @@
 package com.firstproject.testvisualnovel.data
 
 class SceneLogical (private val parsingStore: ParsingStore ) {
+    private var currentSceneId: String = CURRENT_ID
 
-    var currentSceneId = "room_night"
-    private var currentScene: Scene = parsingStore.getSceneById(currentSceneId)!!
+    //check for null after parsing
+    private var currentScene: Scene = requireNotNull(parsingStore.getSceneById(currentSceneId)) {
+        "Start scene $CURRENT_ID was not found in story.json"
+    }
 
-    var backgroundImagePath: String =  currentScene.background
-    var currentSceneText: String= currentScene.text
-    var choises: List<Choice> = currentScene.choices
+    val backgroundImagePath: String
+        get() = currentScene.background
 
-    fun setNewScene (id: String) {
-        backgroundImagePath = parsingStore.getSceneById(id)!!.background
-        currentSceneText = parsingStore.getSceneById(id)!!.text
-        choises = parsingStore.getSceneById(id)!!.choices
+    val currentSceneText: String
+        get() = currentScene.text
+
+    val choices: List<Choice>
+        get() = currentScene.choices
+
+    fun setNewScene(id: String): Boolean {
+        val nextScene = parsingStore.getSceneById(id) ?: return false
+        currentScene = nextScene
+        currentSceneId = nextScene.id
+        return true
+    }
+    companion object {
+        private const val CURRENT_ID = "room_night"
     }
 }

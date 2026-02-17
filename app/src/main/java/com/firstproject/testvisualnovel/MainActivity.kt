@@ -1,7 +1,6 @@
 package com.firstproject.testvisualnovel
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 
 import androidx.activity.enableEdgeToEdge
@@ -48,24 +47,22 @@ class MainActivity : AppCompatActivity() {
             .load("file:///android_asset/${imagePath}")
             .into(binding.ivBackground)
 
-      //    binding.tvStory.text = logical.currentSceneText
-         // binding.tvStory.text = getString(R.string.story_placeholder)
-        binding.tvStory.text = getString(R.string.menu)
+        binding.tvStory.text = logical.currentSceneText
 
         createChooseButtons()
-
     }
 
     private fun createChooseButtons() {
-        val choices: List<Choice> = logical.choises
-        Log.d("TEST", "createChooseButtons: $choices")
+        val choices: List<Choice> = logical.choices
+
         for (i in choices){
             val button: Button = Button(this).apply {
                 text = i.text
                 setOnClickListener {
                     binding.llStoryField.removeAllViews()
-                    logical.setNewScene(i.nextScene)
-                    showScene()
+                    if (logical.setNewScene(i.nextScene)) {
+                        showScene()
+                    }
                 }
             }
             binding.llStoryField.addView(button)
@@ -75,10 +72,12 @@ class MainActivity : AppCompatActivity() {
     private fun setClickerForHeader() {
         binding.btnHeaderMenu.setOnClickListener {
             binding.menuField.isVisible = true
+            binding.constraintStoryField.isVisible = false
         }
 
         binding.btnMenuFieldContinue.setOnClickListener {
             binding.menuField.isVisible =false
+            binding.constraintStoryField.isVisible = true
         }
     }
 }
