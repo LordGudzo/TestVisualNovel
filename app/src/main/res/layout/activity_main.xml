@@ -44,6 +44,7 @@
             style="@style/HeaderIconButton"
             android:src="@drawable/ic_map"
             android:contentDescription="@string/map"
+            android:visibility="gone"
             app:layout_constraintStart_toEndOf="@id/btn_header_menu"
             app:layout_constraintTop_toTopOf="parent"/>
 <!--       btn volume_mute-->
