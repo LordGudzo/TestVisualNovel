@@ -24,6 +24,6 @@ class SceneLogical (private val parsingStore: ParsingStore ) {
         return true
     }
     companion object {
-        private const val CURRENT_ID = "room_night"
+        private const val CURRENT_ID = "start"
     }
 }

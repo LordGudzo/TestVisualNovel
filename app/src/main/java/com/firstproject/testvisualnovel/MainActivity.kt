@@ -1,6 +1,7 @@
 package com.firstproject.testvisualnovel
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 
 import androidx.activity.enableEdgeToEdge
@@ -27,16 +28,13 @@ class MainActivity : AppCompatActivity() {
 
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        Log.d("TEST", "start")
         val parsingStore = ParsingStore(this)
+        Log.d("TEST", "parsingStore $parsingStore")
         logical = SceneLogical(parsingStore)
-
+        Log.d("TEST", "logical $logical")
         setClickerForHeader()
         showScene()
-
-
-
-
     }
 
     private fun showScene() {
@@ -54,8 +52,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun createChooseButtons() {
         val choices: List<Choice> = logical.choices
-
         for (i in choices){
+            Log.d("TEST", "choice $i")
             val button: Button = Button(this).apply {
                 text = i.text
                 setOnClickListener {

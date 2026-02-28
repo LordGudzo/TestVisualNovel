@@ -12,6 +12,7 @@ data class Scene(
     val id: String,
     val text: String,
     val background: String,
+    val music: String,
     val choices: List<Choice>
 )
 @Serializable
